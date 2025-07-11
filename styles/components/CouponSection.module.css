@@ -3,14 +3,14 @@
 }
 
 .heading {
-  font-size: 1.1rem;
-  font-weight: bold;
+  font-size: 20px;
+  font-weight: 700;
   margin-bottom: 0.75rem;
 }
 
 .offerLine {
-  font-size: 0.95rem;
-  color: #444;
+  font-size: 16px;
+  font-weight: 400;
   margin-bottom: 1.2rem;
 }
 
@@ -27,7 +27,9 @@
   border: none;
   border-radius: 15px;
   font-size: 1rem;
-  background-color: #e5bbbb;
+  font-size: 14px;
+  background-color: #EECFCF;
+  font-weight: 400;
 }
 
 .applyBtn {
@@ -35,7 +37,7 @@
   top: 50%;
   right: 0.5rem;
   transform: translateY(-50%);
-  background-color: #C94A4F;
+  background-color: #FF5757;
   color: white;
   padding: 0.4rem 0.9rem;
   font-size: 0.9rem;

@@ -2,6 +2,13 @@
 
 import { useState } from "react";
 import styles from "@/styles/components/CouponSection.module.css";
+import { Anybody } from 'next/font/google';
+
+// ✅ Must be at module scope (outside the component)
+const anybody = Anybody({
+  subsets: ['latin'],
+  weight: ['400', '600'],
+});
 
 type Props = {
   code: string;
@@ -26,7 +33,7 @@ const CouponSection = ({ code, setCode, setDiscount }: Props) => {
     <div className={styles.wrapper}>
       <h3 className={styles.heading}>Available Offers</h3>
       <p className={styles.offerLine}>
-        <strong>Flat 10% Off</strong> – Get 10% off on your course fee. Learn
+        Flat 10% Off – Get 10% off on your course fee. Learn
         more, save more! 🚀 
       </p>
 
@@ -39,7 +46,7 @@ const CouponSection = ({ code, setCode, setDiscount }: Props) => {
           placeholder="Enter Coupon"
           className={styles.input}
         />
-        <button onClick={handleApply} className={styles.applyBtn}>
+        <button onClick={handleApply} className={`${styles.applyBtn} ${anybody.className}`}>
           Apply <span className={styles.arrow}>→</span>
         </button>
       </div>

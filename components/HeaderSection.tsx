@@ -1,21 +1,32 @@
 // components/HeaderSection.tsx
+import { Anybody } from 'next/font/google';
+
+// ✅ Must be at module scope (outside the component)
+const anybody = Anybody({
+  subsets: ['latin'],
+  weight: ['400', '600'],
+});
+
 const HeaderSection = () => {
   return (
     <section style={{ textAlign: 'center', marginBottom: '2rem' }}>
       <h4
   style={{
-    background: 'linear-gradient(to right, red 0%, rgba(255,0,0,0.2) 50%, red 100%)',
+    background: 'linear-gradient(to right, #E42525 0%, #FFBFB2 50%, #E42525 100%)',
+    backgroundClip: 'text',
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent',
-    display: 'inline-block',  // ✅ Add this
+    display: 'inline-block',
     margin: 0,
     fontWeight: 600
   }}
+  className={anybody.className}
 >
   SERVICES
 </h4>
 
-      <h1 style={{ fontSize: '1.5rem', margin: '0.5rem 0' }}>
+
+      <h1 className={anybody.className} style={{ fontSize: '1.5rem', margin: '0.5rem 0' }}>
         Start Your Two-Wheeler Training with Ease!
       </h1>
       <p style={{ color: '#555', lineHeight: 1.5 }}>

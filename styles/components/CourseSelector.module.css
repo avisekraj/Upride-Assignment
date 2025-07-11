@@ -1,30 +1,25 @@
-/* === WRAPPER === */
 .wrapper {
   display: flex;
   flex-direction: column;
   gap: 0rem;
 }
 
-/* === COURSE CARD === */
 .card {
   border-radius: 10px;
   padding: 0.5rem 1.2rem;
   cursor: pointer;
-  /* background: #fff; */
 }
 
-/* === CARD TOP ROW === */
 .topRow {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-/* === TICK CIRCLE === */
 .circle {
   width: 22px;
   height: 22px;
-  border: 2px solid #C94A4F;
+  border: 2px solid #FF5757;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -37,18 +32,19 @@
 }
 
 .circleActive {
-  background-color: #C94A4F; /* 🔴 Red background when selected */
-  border-color: #C94A4F;
+  background-color: #E42525;
+  border-color: #FF5757;
 }
+
 .combinedTitle {
   font-size: 1rem;
+  font-weight: 400;
 }
 
 .boldSubtitle {
-  font-weight: bold;
+  font-weight: 700;
 }
 
-/* === TITLE SECTION === */
 .titleSection {
   display: flex;
   align-items: center;
@@ -58,31 +54,14 @@
   display: flex;
   flex-direction: column;
 }
-/* === TOGGLE ICON (+ / -) === */
+
 .toggleIcon {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-weight: bold;
   cursor: pointer;
   padding: 0.3rem 0.6rem;
 }
 
-/* === OPTIONAL TAGLINE / INFO SECTION (NOT ALWAYS SHOWN) === */
-.descBlock {
-  margin-top: 0.5rem;
-}
-
-.tagline {
-  font-size: 0.95rem;
-  color: #666;
-  margin: 0.2rem 0;
-}
-
-.info {
-  font-size: 0.95rem;
-  color: #888;
-}
-
-/* === SESSION LIST === */
 .sessionList {
   margin-top: 1rem;
   display: flex;
@@ -91,37 +70,40 @@
   color: white;
 }
 
-/* INDIVIDUAL ROW */
 .sessionItem {
   display: flex;
-  align-items: flex-start;
-  background: linear-gradient(to right, rgb(243, 57, 57) 0%, rgba(255, 0, 0, 0.2) 100%);
+  flex-direction: column;
+  background: linear-gradient(to right, #FF8D8D 0%, #FFEBEC 190%);
   padding: 0.75rem 1rem;
-  border-radius: 6px;
+  border-radius: 14px;
   font-size: 0.95rem;
   color: #ffffff;
   width: 100%;
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
-/* ALTERNATE ROW BACKGROUND */
 .sessionItem:nth-child(even) {
-  background: linear-gradient(to right, red 0%, red 40%, rgba(255, 0, 0, 0.2) 100%);
+  background: linear-gradient(to right, #E73131 0%, #E73131 40%, #FFEBEC 190%);
 }
 
-/* DAY BOX (RED PILL) */
+.sessionHeader {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 1rem;
+}
+
 .sessionDay {
-  background-color: transparent;
   border: 1px solid white;
   border-radius: 20px;
   padding: 4px 10px;
   font-size: 0.85rem;
   min-width: 70px;
   text-align: center;
-  margin-right: 1rem;
   white-space: nowrap;
 }
 
-/* SESSION DESCRIPTION */
 .sessionDesc {
   font-weight: 400;
   color: #ffffff;
@@ -133,28 +115,45 @@
   width: 18px;
   height: 18px;
   margin-left: auto;
+  transition: transform 0.3s ease;
 }
 
-.divider {
-  height: 1px;
-  background-color: #ddd;
-  margin: 1.5rem 0;
-  width: 100%;
-  border-radius: 2px;
+.chevronRotated {
+  transform: rotate(180deg);
 }
 
+.sessionDetails {
+  overflow: hidden;
+  font-size: 0.85rem;
+  color: #ffffff;
+  margin-top: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 0.5rem;
+  line-height: 1.5;
+}
 
+.sessionItem.expanded .sessionDetails {
+  max-height: 200px;
+  opacity: 1;
+}
 
-/* VIEW MORE / LESS LINK */
+.sessionDetailsContent {
+  transform: translateY(-5px);
+  transition: transform 0.3s ease;
+}
+
+.sessionItem.expanded .sessionDetailsContent {
+  transform: translateY(0px);
+}
+
 .viewMore {
-  color: #C94A4F;
+  color: #E42525;
   font-weight: 600;
   margin-top: 0.75rem;
   cursor: pointer;
   text-align: left;
+  font-size: 12px;
 }
-
-/* DIVIDER LINE */
 
 .divider {
   height: 1px;
@@ -164,19 +163,9 @@
   border-radius: 2px;
 }
 
-
-/* === RESPONSIVE (MOBILE) === */
 @media (max-width: 600px) {
   .card {
     padding: 0.9rem;
-  }
-
-  .title {
-    font-size: 1rem;
-  }
-
-  .subtitle {
-    font-size: 0.85rem;
   }
 
   .toggleIcon {
@@ -193,9 +182,9 @@
     padding: 3px 8px;
     min-width: auto;
   }
+
   .chevronIcon {
     width: 14px;
     height: 14px;
   }
-
 }

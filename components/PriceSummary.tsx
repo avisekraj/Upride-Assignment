@@ -14,8 +14,8 @@ const PriceSummary = ({ course, addons, discount, setDiscount }: Props) => {
   const [couponCode, setCouponCode] = useState('');
 
   const coursePrice =
-    course === 'beginner' ? 3000 :
-    course === 'advanced' ? 4000 :
+    course === 'beginner' ? 8500 :
+    course === 'advanced' ? 10000 :
     0;
 
   const addonPrice = addons.includes('license') ? 2500 : 0;
@@ -28,8 +28,8 @@ const PriceSummary = ({ course, addons, discount, setDiscount }: Props) => {
     <div style={{
       marginTop: '2rem',
       padding: '1.5rem',
-      borderRadius: '10px',
-      backgroundColor: '#fbd8d8'
+      borderRadius: '12px',
+      backgroundColor: '#F6DFDF'
     }}>
       
       {/* ✅ Coupon Section at top of Price Summary */}
@@ -39,16 +39,11 @@ const PriceSummary = ({ course, addons, discount, setDiscount }: Props) => {
         setDiscount={setDiscount}
       />
 
-      <h4 style={{
-        marginBottom: '1rem',
-        fontSize: '1rem',
-        paddingBottom: '0.5rem'
-      }}>
-        Program Price
-      </h4>
+      
 
-      <div style={rowStyle}>
-        <span>Course Fee</span>
+      <div style={{ ...rowStyle, fontSize: '16px',fontWeight: 700  }}
+>
+        <span>Program Price</span>
         <span>₹{coursePrice.toLocaleString()}</span>
       </div>
 
@@ -81,8 +76,8 @@ const PriceSummary = ({ course, addons, discount, setDiscount }: Props) => {
 
       <div style={{
         ...rowStyle,
-        fontWeight: 'bold',
-        fontSize: '1.2rem',
+        fontWeight: '700',
+        fontSize: '16px',
         color: '#000000ff'
       }}>
         <span>Total</span>

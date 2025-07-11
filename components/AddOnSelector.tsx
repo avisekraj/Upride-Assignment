@@ -40,7 +40,9 @@ const AddOnSelector = ({ selected, setSelected }: Props) => {
                   className={`${styles.circle} ${
                     isActive ? styles.circleActive : ""
                   }`}
-                >{isActive ? '✓' : ''}</div>
+                >{isActive ? <svg width="13" height="9" viewBox="0 0 13 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0.835754 3.7449L5.01059 7.91991L12.1865 0.744049" stroke="white" stroke-width="1.4483" stroke-linecap="round"/>
+</svg> : ''}</div>
             <span className={styles.price}>₹{addon.price.toLocaleString()}</span>
           </div>
         </div>

@@ -8,9 +8,23 @@ import CourseSelector from './CourseSelector';
 import AddOnSelector from './AddOnSelector';
 import PriceSummary from './PriceSummary';
 import FooterNavigation from './FooterNavigation';
+import { Arimo } from 'next/font/google';
+import { Anybody } from 'next/font/google';
 
+// ✅ Must be at module scope (outside the component)
+const anybody = Anybody({
+  subsets: ['latin'],
+  weight: ['400', '600'],
+});
+
+
+const arimo = Arimo({
+  subsets: ['latin'],
+  weight: ['400', '600'], // Optional: choose weights you need
+});
 type Step = 'ride' | 'course';
 type CourseType = 'beginner' | 'advanced' | 'custom';
+
 
 const CourseFormWrapper = () => {
   // ✅ State Management
@@ -19,15 +33,16 @@ const CourseFormWrapper = () => {
   const [course, setCourse] = useState<CourseType>('beginner');
   const [addons, setAddons] = useState<string[]>([]);
   const [discount, setDiscount] = useState(0);
+  
 
   return (
     <>
-    <main
+    <main className={arimo.className}
       style={{
         maxWidth: '900px',
         margin: '0 auto',
         padding: '1rem',
-      }}
+      }} 
     >
       {/* Header */}
       <HeaderSection />
@@ -43,12 +58,12 @@ const CourseFormWrapper = () => {
         <div
           style={{
             padding: '1.5rem',
-            background: 'rgba(200, 184, 184, 0.38)',
-            borderRadius: '10px',
+            background: '#F2EAEA',
+            borderRadius: '21px',
           }}
         >
           {/* Title */}
-          <p
+          <p className={anybody.className}
             style={{
               textAlign: 'center',
               fontWeight: 'bold',

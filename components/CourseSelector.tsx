@@ -1,7 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import styles from "@/styles/components/CourseSelector.module.css";
+import { Anybody } from 'next/font/google';
+
+// ✅ Must be at module scope (outside the component)
+const anybody = Anybody({
+  subsets: ['latin'],
+  weight: ['400', '600'],
+});
 
 type CourseType = "beginner" | "advanced" | "custom";
 
@@ -13,40 +21,43 @@ type Props = {
 const CourseSelector = ({ selected, setSelected }: Props) => {
   const [expanded, setExpanded] = useState<CourseType | null>(selected);
   const [manuallyExpanded, setManuallyExpanded] = useState(false);
+  const [expandedSession, setExpandedSession] = useState<string | null>(null);
 
   useEffect(() => {
-    // If user selects a new course, auto-expand that card (unless they had manually toggled View More)
-    setExpanded(selected); // Always sync expand with selected
-    setManuallyExpanded(false); // ✅ Reset manual view more
+    setExpanded(selected);
+    setManuallyExpanded(false);
+    setExpandedSession(null);
   }, [selected]);
 
   const handleSelect = (course: CourseType) => {
     setSelected(course);
+    // Optional: you can also toggle expanded here if you want selection to toggle expansion
+    // setExpanded(course === expanded ? null : course);
+    setManuallyExpanded(false);
+    setExpandedSession(null);
+  };
+
+  const toggleExpand = (course: CourseType) => {
+    setExpanded((prev) => (prev === course ? null : course));
+    setManuallyExpanded(false);
+    setExpandedSession(null);
   };
 
   const courses = [
     {
       key: "beginner",
       title: "Beginner Blast",
-      subtitle: "10 Sessions Mastery",
+      subtitle: "10 Sessions to Mastery",
       isLong: true,
-      sessions: [
-        "DAY 1 – Getting in Gear - Mastering the Basics",
-        "DAY 2 – Getting in Gear - Mastering the Basics",
-        "DAY 3 – Getting in Gear - Mastering the Basics",
-        "DAY 4 – Getting in Gear - Mastering the Basics",
-        "DAY 5 – Getting in Gear - Mastering the Basics",
-        "DAY 6 – Getting in Gear - Mastering the Basics",
-        "DAY 7 – Getting in Gear - Mastering the Basics",
-        "DAY 8 – Getting in Gear - Mastering the Basics",
-        "DAY 9 – Getting in Gear - Mastering the Basics",
-        "DAY 10 – Getting in Gear - Mastering the Basics",
-      ],
+      sessions: Array.from(
+        { length: 10 },
+        (_, i) => `DAY ${i + 1} – Getting in Gear - Mastering the Basics`
+      ),
     },
     {
       key: "advanced",
       title: "Advanced Ace",
-      subtitle: "5 Sessions Road Expert",
+      subtitle: "05 Sessions to Perfection",
       isLong: true,
       sessions: [
         "DAY 1 – Traffic Navigation",
@@ -61,7 +72,7 @@ const CourseSelector = ({ selected, setSelected }: Props) => {
       title: "Customize Course",
       subtitle: "",
       isLong: false,
-      sessions: ["Flexible: Choose any session"],
+      sessions: ["DAY 1 – Flexible: Choose any session"],
     },
   ];
 
@@ -73,10 +84,14 @@ const CourseSelector = ({ selected, setSelected }: Props) => {
         const courseKey = course.key as CourseType;
 
         return (
-          <div
+          <motion.div
+            layout
             key={course.key}
             className={`${styles.card} ${isActive ? styles.active : ""}`}
             onClick={() => handleSelect(courseKey)}
+            initial={{ opacity: 1, scale: 1 }}
+            animate={{ opacity: 1, scale: isActive ? 1 : 1 }}
+            transition={{ duration: 0.5 }}
           >
             <div className={styles.topRow}>
               <div className={styles.titleSection}>
@@ -85,68 +100,132 @@ const CourseSelector = ({ selected, setSelected }: Props) => {
                     isActive ? styles.circleActive : ""
                   }`}
                 >
-                  {isActive ? "✓" : ""}
+                  {isActive ? (
+                    <svg
+                      width="13"
+                      height="9"
+                      viewBox="0 0 13 9"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M0.835754 3.7449L5.01059 7.91991L12.1865 0.744049"
+                        stroke="white"
+                        strokeWidth="1.4483"
+                        strokeLinecap="round"
+                      />
+                    </svg>
+                  ) : (
+                    ""
+                  )}
                 </div>
                 <div className={styles.titleRow}>
                   <div className={styles.combinedTitle}>
                     {course.title}
                     {course.subtitle && (
-                      <span className={styles.boldSubtitle}>
-                        {" "}
-                        – {course.subtitle}
-                      </span>
+                      <span className={styles.boldSubtitle}> – {course.subtitle}</span>
                     )}
                   </div>
                 </div>
               </div>
-              <div className={styles.toggleIcon}>{isExpanded ? "−" : "+"}</div>
+
+              {/* Toggle icon with click handler to expand/collapse */}
+              <div
+                className={styles.toggleIcon}
+                onClick={(e) => {
+                  e.stopPropagation(); // Prevent selecting the card
+                  toggleExpand(courseKey);
+                }}
+              >
+                {isExpanded ? "−" : "+"}
+              </div>
             </div>
 
-            {isExpanded && (
-              <>
-                <div className={styles.sessionList}>
+            <AnimatePresence initial={false}>
+              {isExpanded && (
+                <motion.div
+                  key="sessionList"
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.35 }}
+                  className={styles.sessionList}
+                >
                   {(course.isLong && !manuallyExpanded
                     ? course.sessions.slice(0, 3)
                     : course.sessions
-                  ).map((session, index) => {
+                  ).map((session, idx) => {
                     const [day, ...rest] = session.split("–");
+                    const sessionKey = `${course.key}-${idx}`;
+                    const isSessionExpanded = expandedSession === sessionKey;
+
                     return (
-                      <div key={index} className={styles.sessionItem}>
-                        <span className={styles.sessionDay}>{day.trim()}</span>
-                        <span className={styles.sessionDesc}>
-                          {rest.join("–").trim()}
-                        </span>
-                        <img
-                          src="/chevron-down.png"
-                          alt="Chevron"
-                          className={styles.chevronIcon}
-                        />
-                      </div>
+                      <motion.div
+                        layout
+                        key={idx}
+                        className={`${styles.sessionItem} ${
+                          isSessionExpanded ? styles.expanded : ""
+                        }`}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setExpandedSession((prev) =>
+                            prev === sessionKey ? null : sessionKey
+                          );
+                        }}
+                      >
+                        <div className={styles.sessionHeader}>
+                          <span className={styles.sessionDay}>{day.trim()}</span>
+                          <span className={styles.sessionDesc}>
+                            {rest.join("–").trim()}
+                          </span>
+                          <img
+                            src="/chevron-down.png"
+                            alt="Chevron"
+                            className={`${styles.chevronIcon} ${
+                              isSessionExpanded ? styles.chevronRotated : ""
+                            }`}
+                          />
+                        </div>
+
+                        <AnimatePresence>
+                          {isSessionExpanded && (
+                            <motion.div
+                              className={styles.sessionDetails}
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: "auto", opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              transition={{ duration: 0.3 }}
+                            >
+                              <div className={styles.sessionDetailsContent}>
+                                <p>
+                                  This session includes practical guidance, real-world
+                                  exercises, and tips tailored to your level.
+                                </p>
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </motion.div>
                     );
                   })}
-                </div>
 
-                {/* View More */}
-                {course.isLong && (
-                  <div
-                    className={styles.viewMore}
-                    onClick={(e) => {
-                      e.stopPropagation(); // don't trigger select
-                      if (manuallyExpanded && isExpanded) {
-                        setManuallyExpanded(false); // reset to default
-                      } else {
-                        setExpanded(courseKey);
-                        setManuallyExpanded(true);
-                      }
-                    }}
-                  >
-                    {manuallyExpanded ? "View Less –" : "View More +"}
-                  </div>
-                )}
-              </>
-            )}
+                  {course.isLong && (
+                    <div
+                      className={`${styles.viewMore} ${anybody.className}`}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setManuallyExpanded((prev) => !prev);
+                      }}
+                    >
+                      {manuallyExpanded ? "View Less →" : "View More →"}
+                    </div>
+                  )}
+                </motion.div>
+              )}
+            </AnimatePresence>
+
             {index < courses.length - 1 && <div className={styles.divider} />}
-          </div>
+          </motion.div>
         );
       })}
     </div>

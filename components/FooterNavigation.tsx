@@ -12,12 +12,14 @@ const FooterNavigation = () => {
         justifyContent: 'flex-start', // Align both buttons to the left,
         marginTop:'1rem',
         gap: '1rem',
-        background:'transparent'
+        background:'transparent',
+        fontSize:'16px',
       }}
     >
       <button
         onClick={handleBack}
         style={{
+          background:'none',
           border: 'none',
           color: '#b03e44',
           cursor: 'pointer',
@@ -29,6 +31,7 @@ const FooterNavigation = () => {
       <button
         onClick={handleNext}
         style={{
+          background:'none',
           border: 'none',
           color: '#333',
           cursor: 'pointer',
