@@ -1,0 +1,201 @@
+/* === WRAPPER === */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0rem;
+}
+
+/* === COURSE CARD === */
+.card {
+  border-radius: 10px;
+  padding: 0.5rem 1.2rem;
+  cursor: pointer;
+  /* background: #fff; */
+}
+
+/* === CARD TOP ROW === */
+.topRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* === TICK CIRCLE === */
+.circle {
+  width: 22px;
+  height: 22px;
+  border: 2px solid #C94A4F;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background-color: transparent;
+  font-size: 0.8rem;
+  font-weight: bold;
+  margin-right: 0.75rem;
+}
+
+.circleActive {
+  background-color: #C94A4F; /* 🔴 Red background when selected */
+  border-color: #C94A4F;
+}
+.combinedTitle {
+  font-size: 1rem;
+}
+
+.boldSubtitle {
+  font-weight: bold;
+}
+
+/* === TITLE SECTION === */
+.titleSection {
+  display: flex;
+  align-items: center;
+}
+
+.titleRow {
+  display: flex;
+  flex-direction: column;
+}
+/* === TOGGLE ICON (+ / -) === */
+.toggleIcon {
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0.3rem 0.6rem;
+}
+
+/* === OPTIONAL TAGLINE / INFO SECTION (NOT ALWAYS SHOWN) === */
+.descBlock {
+  margin-top: 0.5rem;
+}
+
+.tagline {
+  font-size: 0.95rem;
+  color: #666;
+  margin: 0.2rem 0;
+}
+
+.info {
+  font-size: 0.95rem;
+  color: #888;
+}
+
+/* === SESSION LIST === */
+.sessionList {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  color: white;
+}
+
+/* INDIVIDUAL ROW */
+.sessionItem {
+  display: flex;
+  align-items: flex-start;
+  background: linear-gradient(to right, rgb(243, 57, 57) 0%, rgba(255, 0, 0, 0.2) 100%);
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  color: #ffffff;
+  width: 100%;
+}
+
+/* ALTERNATE ROW BACKGROUND */
+.sessionItem:nth-child(even) {
+  background: linear-gradient(to right, red 0%, red 40%, rgba(255, 0, 0, 0.2) 100%);
+}
+
+/* DAY BOX (RED PILL) */
+.sessionDay {
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: 20px;
+  padding: 4px 10px;
+  font-size: 0.85rem;
+  min-width: 70px;
+  text-align: center;
+  margin-right: 1rem;
+  white-space: nowrap;
+}
+
+/* SESSION DESCRIPTION */
+.sessionDesc {
+  font-weight: 400;
+  color: #ffffff;
+  flex: 1;
+  line-height: 1.4;
+}
+
+.chevronIcon {
+  width: 18px;
+  height: 18px;
+  margin-left: auto;
+}
+
+.divider {
+  height: 1px;
+  background-color: #ddd;
+  margin: 1.5rem 0;
+  width: 100%;
+  border-radius: 2px;
+}
+
+
+
+/* VIEW MORE / LESS LINK */
+.viewMore {
+  color: #C94A4F;
+  font-weight: 600;
+  margin-top: 0.75rem;
+  cursor: pointer;
+  text-align: left;
+}
+
+/* DIVIDER LINE */
+
+.divider {
+  height: 1px;
+  background-color: #cac9c9;
+  margin-top: 1.5rem;
+  width: 100%;
+  border-radius: 2px;
+}
+
+
+/* === RESPONSIVE (MOBILE) === */
+@media (max-width: 600px) {
+  .card {
+    padding: 0.9rem;
+  }
+
+  .title {
+    font-size: 1rem;
+  }
+
+  .subtitle {
+    font-size: 0.85rem;
+  }
+
+  .toggleIcon {
+    font-size: 1rem;
+  }
+
+  .sessionItem {
+    font-size: 0.9rem;
+    padding: 0.6rem 0.8rem;
+  }
+
+  .sessionDay {
+    font-size: 0.75rem;
+    padding: 3px 8px;
+    min-width: auto;
+  }
+  .chevronIcon {
+    width: 14px;
+    height: 14px;
+  }
+
+}

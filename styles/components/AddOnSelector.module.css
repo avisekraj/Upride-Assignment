@@ -1,0 +1,85 @@
+/* styles/components/AddOnSelector.module.css */
+.wrapper {
+  margin-top: 2rem;
+}
+
+.card {
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+  background-color: #fbd8d8;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  border-color: #aaa;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.label {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+  line-height: 1.4;
+}
+
+.priceRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+
+/* === TICK CIRCLE === */
+.circle {
+  width: 22px;
+  height: 22px;
+  border: 2px solid #C94A4F;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background-color: transparent;
+  font-size: 0.8rem;
+  font-weight: bold;
+  margin-right: 0.75rem;
+}
+
+.circleActive {
+  background-color: #C94A4F; /* 🔴 Red background when selected */
+  border-color: #C94A4F;
+}
+
+.price {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #000000;
+}
+
+/* ✅ Mobile view */
+@media (max-width: 600px) {
+  .label {
+    font-size: 0.95rem;
+  }
+
+  .price {
+    font-size: 0.95rem;
+  }
+
+  .card {
+    padding: 0.9rem;
+  }
+}

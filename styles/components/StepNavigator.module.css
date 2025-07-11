@@ -1,0 +1,46 @@
+.stepTabs {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: 2rem 0;
+  border-bottom: 2px solid #e0e0e0;
+  flex-wrap: wrap; /* allows wrapping on smaller screens */
+}
+
+.tab {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-bottom: 3px solid transparent;
+  transition: border-color 0.3s, color 0.3s;
+  color: #666; /* Default gray */
+}
+
+.tab:hover {
+  color: #333; /* Slightly darker on hover */
+}
+
+.active {
+  border-bottom: 3px solid #C94A4F; /* ✅ Red underline */
+  color: #000; /* ✅ Dark black for selected tab */
+}
+
+
+@media (max-width: 768px) {
+  .stepTabs {
+    flex-direction: column;
+    align-items: center; /* center on mobile */
+    gap: 0; /* remove gap to control spacing via border */
+  }
+
+  .tab {
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0; /* ✅ Gray line below each tab */
+    padding-bottom: 1rem;
+  }
+  .active {
+  border-bottom: 3px solid #C94A4F; /* ✅ Red underline */
+  color: #000; /* ✅ Dark black for selected tab */
+}
+}
