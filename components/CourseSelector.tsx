@@ -3,13 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import styles from "@/styles/components/CourseSelector.module.css";
-import { Anybody } from 'next/font/google';
-
-// ✅ Must be at module scope (outside the component)
-const anybody = Anybody({
-  subsets: ['latin'],
-  weight: ['400', '600'],
-});
+import { anybody } from '../fonts';
 
 type CourseType = "beginner" | "advanced" | "custom";
 
@@ -31,8 +25,6 @@ const CourseSelector = ({ selected, setSelected }: Props) => {
 
   const handleSelect = (course: CourseType) => {
     setSelected(course);
-    // Optional: you can also toggle expanded here if you want selection to toggle expansion
-    // setExpanded(course === expanded ? null : course);
     setManuallyExpanded(false);
     setExpandedSession(null);
   };
@@ -100,7 +92,7 @@ const CourseSelector = ({ selected, setSelected }: Props) => {
                     isActive ? styles.circleActive : ""
                   }`}
                 >
-                  {isActive ? (
+                  {isActive &&
                     <svg
                       width="13"
                       height="9"
@@ -114,10 +106,7 @@ const CourseSelector = ({ selected, setSelected }: Props) => {
                         strokeWidth="1.4483"
                         strokeLinecap="round"
                       />
-                    </svg>
-                  ) : (
-                    ""
-                  )}
+                    </svg>}
                 </div>
                 <div className={styles.titleRow}>
                   <div className={styles.combinedTitle}>
@@ -194,7 +183,7 @@ const CourseSelector = ({ selected, setSelected }: Props) => {
                               initial={{ height: 0, opacity: 0 }}
                               animate={{ height: "auto", opacity: 1 }}
                               exit={{ height: 0, opacity: 0 }}
-                              transition={{ duration: 0.3 }}
+                              transition={{ duration: 0.4 }}
                             >
                               <div className={styles.sessionDetailsContent}>
                                 <p>

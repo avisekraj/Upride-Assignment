@@ -2,13 +2,7 @@
 
 import { useState } from "react";
 import styles from "@/styles/components/CouponSection.module.css";
-import { Anybody } from 'next/font/google';
-
-// ✅ Must be at module scope (outside the component)
-const anybody = Anybody({
-  subsets: ['latin'],
-  weight: ['400', '600'],
-});
+import { anybody } from '../fonts';
 
 type Props = {
   code: string;

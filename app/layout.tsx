@@ -2,12 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 // If you're using the App Router (app/layout.tsx or app/page.tsx)
-import { Anybody } from 'next/font/google';
-
-const anybody = Anybody({
-  subsets: ['latin'],
-  weight: ['400', '600'], // Add more if needed
-});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

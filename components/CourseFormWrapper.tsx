@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import HeaderSection from './HeaderSection';
 import StepNavigator from './StepNavigator';
 import RideSelector from './RideSelector';
@@ -8,53 +8,40 @@ import CourseSelector from './CourseSelector';
 import AddOnSelector from './AddOnSelector';
 import PriceSummary from './PriceSummary';
 import FooterNavigation from './FooterNavigation';
-import { Arimo } from 'next/font/google';
-import { Anybody } from 'next/font/google';
+import { anybody, arimo } from '../fonts';
 
-// ✅ Must be at module scope (outside the component)
-const anybody = Anybody({
-  subsets: ['latin'],
-  weight: ['400', '600'],
-});
-
-
-const arimo = Arimo({
-  subsets: ['latin'],
-  weight: ['400', '600'], // Optional: choose weights you need
-});
 type Step = 'ride' | 'course';
 type CourseType = 'beginner' | 'advanced' | 'custom';
 
-
 const CourseFormWrapper = () => {
-  // ✅ State Management
   const [step, setStep] = useState<Step>('course');
   const [selectedRide, setSelectedRide] = useState<'car' | 'bike' | 'auto' | 'truck'>('car');
   const [course, setCourse] = useState<CourseType>('beginner');
   const [addons, setAddons] = useState<string[]>([]);
   const [discount, setDiscount] = useState(0);
-  
+
+  // ✅ Scroll to top of the full page on refresh
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
   return (
-    <>
-    <main className={arimo.className}
+    <main
+      className={arimo.className}
       style={{
         maxWidth: '900px',
         margin: '0 auto',
         padding: '1rem',
-      }} 
+      }}
     >
-      {/* Header */}
+      {/* ✅ This will now be visible immediately after refresh */}
       <HeaderSection />
 
-      {/* Step Navigator */}
       <StepNavigator activeStep={step} setActiveStep={setStep} />
 
-      {/* Step 1: Ride Selection */}
       {step === 'ride' ? (
         <RideSelector selected={selectedRide} setSelected={setSelectedRide} />
       ) : (
-        // Step 2: Course Selection and Price Summary
         <div
           style={{
             padding: '1.5rem',
@@ -62,8 +49,8 @@ const CourseFormWrapper = () => {
             borderRadius: '21px',
           }}
         >
-          {/* Title */}
-          <p className={anybody.className}
+          <p
+            className={anybody.className}
             style={{
               textAlign: 'center',
               fontWeight: 'bold',
@@ -73,13 +60,8 @@ const CourseFormWrapper = () => {
             Choose Your Perfect Course
           </p>
 
-          {/* Course Selector */}
           <CourseSelector selected={course} setSelected={setCourse} />
-
-          {/* Add-On Selector */}
           <AddOnSelector selected={addons} setSelected={setAddons} />
-
-          {/* Price Summary with Coupon Integration */}
           <PriceSummary
             course={course}
             addons={addons}
@@ -89,10 +71,8 @@ const CourseFormWrapper = () => {
         </div>
       )}
 
-      {/* Footer (Navigation Buttons) */}
       <FooterNavigation />
     </main>
-    </>
   );
 };
 
