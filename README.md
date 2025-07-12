@@ -61,7 +61,7 @@ bun dev
 ## What I Learned
 
 - Building multi-step forms with React state
-- Managing conditional rendering for different steps
+- Managing conditional rendering for different steps 
 - Implementing real-time price calculations
 - Working with CSS Modules for modular styling
 - Using Framer Motion to enhance UI animations
@@ -90,3 +90,4 @@ This project is for educational purposes only.
 
 
 ## Deploy on Vercel
+[Visit Live](https://upride-assignment-orpin.vercel.app/)
