@@ -1,9 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Upride Assignment
 
-## Getting Started
+This project is a **multi-step form application** built as part of an assignment to demonstrate React and Next.js skills including component-based architecture, state management, and UI design.
 
-First, run the development server:
+---
 
+## Project Overview
+
+The app guides users through a two-step process to select and customize their two-wheeler training:
+
+### Step 1: Ride Selection
+- Choose your preferred vehicle type from options including **Car**, **Bike**, **Auto**, and **Truck**.
+- This selection helps customize the training options relevant to the chosen ride.
+
+### Step 2: Course Selection and Add-Ons
+- Choose a training course level: **Beginner**, **Advanced**, or **Custom**.
+- Select optional add-ons like a **Two-Wheeler License**.
+- View a detailed price summary including program price, add-ons, GST, and any discounts.
+- Apply a coupon code to receive a discount if available.
+
+---
+
+## Technologies Used
+
+- **Next.js** (React framework)
+- **React hooks** for state management
+- **TypeScript** for type safety
+- **CSS Modules** for scoped styling
+- **Google Fonts** (`Anybody` and `Arimo`) via Next.js font optimization
+- **Framer Motion** for smooth animations (expand/collapse)
+
+---
+
+## Features Implemented
+
+- Step-based navigation for ride and course selection ☺️
+- Dynamic price calculation including GST and discount handling 🤑
+- Coupon validation with feedback ❌
+- Responsive design for desktop and mobile 📱
+- Basic animation for user interactions 😍
+- Scroll to top on page refresh for better UX 😇
+
+---
+
+## How to Run
+
+1. Clone or download the project files.
+2. Install dependencies using `npm install` or `yarn install`.First, run the development server:
+3.
 ```bash
 npm run dev
 # or
@@ -13,24 +56,37 @@ pnpm dev
 # or
 bun dev
 ```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## What I Learned
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Building multi-step forms with React state
+- Managing conditional rendering for different steps
+- Implementing real-time price calculations
+- Working with CSS Modules for modular styling
+- Using Framer Motion to enhance UI animations
+- Handling user input and validation (coupon codes)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Assignment Notes
 
-To learn more about Next.js, take a look at the following resources:
+This project is for learning purposes and does not include backend or persistent storage. The UI and logic focus on React fundamentals and component-based design.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Author
+
+Abhishek Raj
+
+---
+
+## License
+
+This project is for educational purposes only.
+
+
+
+
 
 ## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
