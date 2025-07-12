@@ -45,7 +45,7 @@
     padding-bottom: 1rem;
   }
   .active {
-  border-bottom: 3px solid #C94A4F; /* ✅ Red underline */
+  border-bottom: 3px solid #FF5757; /* ✅ Red underline */
   color: #000; /* ✅ Dark black for selected tab */
 }
 }

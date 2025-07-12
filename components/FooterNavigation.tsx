@@ -33,7 +33,7 @@ const FooterNavigation = () => {
         style={{
           background:'none',
           border: 'none',
-          color: '#333',
+          color: '#E42525',
           cursor: 'pointer',
         }}
       >
