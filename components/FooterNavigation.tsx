@@ -1,9 +1,16 @@
 // components/FooterNavigation.tsx
 'use client';
 
-const FooterNavigation = () => {
-  const handleBack = () => alert('Going back to Step 1');
-  const handleNext = () => alert('Proceeding to Step 3');
+
+type Props = {
+  step: 'ride' | 'course';
+  setStep: (step: 'ride' | 'course') => void;
+};
+
+
+const FooterNavigation = ({ step, setStep }: Props) => {
+  const handleBack = () =>  (step === 'course')? setStep('ride'):alert("Step 1")
+  const handleNext = () => (step === 'ride')? setStep('course'):alert('Step 2');
 
   return (
     <div
@@ -21,7 +28,7 @@ const FooterNavigation = () => {
         style={{
           background:'none',
           border: 'none',
-          color: '#b03e44',
+          color: '#E42525',
           cursor: 'pointer',
         }}
       >
@@ -33,7 +40,7 @@ const FooterNavigation = () => {
         style={{
           background:'none',
           border: 'none',
-          color: '#E42525',
+          color: '#718096',
           cursor: 'pointer',
         }}
       >

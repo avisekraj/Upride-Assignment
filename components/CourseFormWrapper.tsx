@@ -75,7 +75,8 @@ const CourseFormWrapper = () => {
       </AnimatePresence>
 
       {/* Footer Navigation */}
-      <FooterNavigation />
+      <FooterNavigation step={step} setStep={setStep} />
+
     </main>
   );
 };
