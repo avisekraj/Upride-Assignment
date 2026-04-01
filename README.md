@@ -81,9 +81,7 @@ Abhishek Raj
 
 ---
 
-## License
 
-This project is for educational purposes only.
 
 
 
